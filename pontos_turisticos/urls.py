@@ -18,6 +18,7 @@ from django.urls import path, include
 from rest_framework import routers
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.authtoken.views import obtain_auth_token
 
 from atracoes.api.viewsets import AtracoesViewSet
 from avaliacoes.api.viewsets import AvaliacaoViewSet
@@ -34,5 +35,6 @@ router.register(r'avaliacoes', AvaliacaoViewSet)
 
 urlpatterns = [
                   path('', include(router.urls)),
+                  path('api-token-auth/', obtain_auth_token),
                   path('admin/', admin.site.urls),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
